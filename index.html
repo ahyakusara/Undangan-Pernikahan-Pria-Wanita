@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Undangan Pernikahan</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fdf6f0;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+      text-align: center;
+    }
+    .card {
+      background: white;
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease-out;
+    }
+    h1, h2, p {
+      margin: 10px 0;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Styling for RSVP form */
+    form {
+      margin-top: 30px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .footer {
+      font-size: 0.9em;
+      color: #888;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Undangan Pernikahan</h1>
+    <p>Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Anda untuk hadir dalam acara pernikahan kami:</p>
+    
+    <h2>Z Abdul Rozak & Mayliana Rosani</h2>
+    <p>Sabtu, 17 Mei 2025</p>
+    <p>Pukul 10.00 WIB - Selesai</p>
+    <p>Di Aula PT. Danusari Mitra Sejahtera</p>
+
+    <p>Merupakan kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.</p>
+
+    <!-- Form RSVP -->
+    <form action="mailto:email@example.com" method="post" enctype="text/plain">
+      <h3>Konfirmasi Kehadiran</h3>
+      <label for="name">Nama:</label>
+      <input type="text" id="name" name="name" required placeholder="Masukkan Nama Anda" />
+
+      <label for="attendance">Apakah Anda akan hadir?</label>
+      <select id="attendance" name="attendance">
+        <option value="yes">Ya</option>
+        <option value="no">Tidak</option>
+      </select>
+
+      <button type="submit">Kirim Konfirmasi</button>
+    </form>
+
+    <p class="footer">Terima kasih atas doa dan restunya.</p>
+  </div>
+</body>
+</html>
