@@ -20,52 +20,34 @@
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      animation: fadeIn 1s ease-out;
     }
     h1, h2, p {
       margin: 10px 0;
     }
-
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Styling for RSVP form */
-    form {
-      margin-top: 30px;
-      padding: 20px;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    input, select {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-    }
-
-    button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-
     .footer {
       font-size: 0.9em;
       color: #888;
       margin-top: 30px;
+    }
+
+    /* Galeri */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .gallery img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
     }
   </style>
 </head>
@@ -79,24 +61,47 @@
     <p>Pukul 10.00 WIB - Selesai</p>
     <p>Di Aula PT. Danusari Mitra Sejahtera</p>
 
+    <h3>Hitung Mundur Menuju Hari Pernikahan</h3>
+    <p id="countdown" style="font-size: 1.2em; font-weight: bold;"></p>
+
+    <h3>Galeri</h3>
+    <div class="gallery">
+      <img src="https://raw.githubusercontent.com/ahyakusara/Undangan-Pernikahan-Zet-Oca/main/foto1.jpg" alt="Foto 1" />
+      <img src="https://raw.githubusercontent.com/ahyakusara/Undangan-Pernikahan-Zet-Oca/main/foto2.jpg" alt="Foto 2" />
+      <img src="https://raw.githubusercontent.com/ahyakusara/Undangan-Pernikahan-Zet-Oca/main/foto3.jpg" alt="Foto 3" />
+    </div>
+
     <p>Merupakan kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.</p>
-
-    <!-- Form RSVP -->
-    <form action="mailto:email@example.com" method="post" enctype="text/plain">
-      <h3>Konfirmasi Kehadiran</h3>
-      <label for="name">Nama:</label>
-      <input type="text" id="name" name="name" required placeholder="Masukkan Nama Anda" />
-
-      <label for="attendance">Apakah Anda akan hadir?</label>
-      <select id="attendance" name="attendance">
-        <option value="yes">Ya</option>
-        <option value="no">Tidak</option>
-      </select>
-
-      <button type="submit">Kirim Konfirmasi</button>
-    </form>
 
     <p class="footer">Terima kasih atas doa dan restunya.</p>
   </div>
+
+  <!-- Musik Otomatis -->
+  <audio autoplay loop hidden>
+    <source src="https://raw.githubusercontent.com/ahyakusara/Undangan-Pernikahan-Zet-Oca/main/musik.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Countdown -->
+  <script>
+    const countDownDate = new Date("May 17, 2025 10:00:00").getTime();
+    const countdownFunction = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+
+      if (distance < 0) {
+        clearInterval(countdownFunction);
+        document.getElementById("countdown").innerHTML = "Acara Sedang Berlangsung!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML = 
+        `${days} hari ${hours} jam ${minutes} menit ${seconds} detik`;
+    }, 1000);
+  </script>
 </body>
 </html>
