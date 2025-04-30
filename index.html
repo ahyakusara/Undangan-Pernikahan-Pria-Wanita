@@ -35,6 +35,38 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
       display: none;
       animation: fadeIn 1s ease forwards;
+
+      .ornamen-kanan-atas,
+.ornamen-kiri-bawah,.ornamen-kiri-atas,.ornamen-kanan-bawah {
+  position: absolute;
+  width: 100px;
+  height: auto;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.ornamen-kanan-atas {
+  top: +5px;
+  right: +5px;
+}
+
+.ornamen-kiri-atas {
+  top: +5px;
+  left: +5px;
+  transform: scaleX(-1);
+}
+
+.ornamen-kiri-bawah {
+  bottom: +5px;
+  left: +5px;
+  transform: rotate(180deg)
+}
+
+.ornamen-kanan-bawah {
+  bottom: +5px;
+  right: +5px;
+  transform: scaleY(-1);
+}
     }
 
     h1 {
@@ -110,6 +142,11 @@
 
     <!-- Konten Undangan -->
     <div class="card" id="undangan">
+      <!-- Ornamen Hiasan -->
+  <img src="ornamen_pojok.png" alt="Ornamen Kanan Atas" class="ornamen-kanan-atas">
+  <img src="ornamen_pojok.png" alt="Ornamen Kiri Bawah" class="ornamen-kiri-bawah">
+  <img src="ornamen_pojok.png" alt="Ornamen Kiri Atas" class="ornamen-kiri-atas">
+  <img src="ornamen_pojok.png" alt="Ornamen Kanan Bawah" class="ornamen-kanan-bawah">
       <h1>Undangan Pernikahan</h1>
       <p>Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Anda untuk hadir dalam pernikahan kami:</p>
 
