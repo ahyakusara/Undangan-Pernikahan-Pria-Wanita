@@ -343,7 +343,7 @@ form#bukuTamuForm {
         <!-- Tambah foto lain kalau mau -->
       </div>
 
-      <h3>Buku Tamu</h3>
+      <h3>Ucapan & Doa</h3>
 <form id="bukuTamuForm">
   <input type="text" id="namaBukuTamu" placeholder="Nama Anda" required>
   <textarea id="pesanBukuTamu" placeholder="Ucapan atau doa..." required></textarea>
@@ -378,6 +378,7 @@ form#bukuTamuForm {
   document.getElementById("bg-music").play(); 
   mulaiCountdown();
   undangan.scrollIntoView({ behavior: 'smooth' });
+  ambilUcapan(); // ini ditambahkan
 }
 
 // Fitur Buku Tamu
@@ -387,15 +388,41 @@ document.getElementById("bukuTamuForm").addEventListener("submit", function(e) {
   const pesan = document.getElementById("pesanBukuTamu").value.trim();
 
   if (nama && pesan) {
-    const ucapanBaru = document.createElement("div");
-    ucapanBaru.className = "ucapan";
-    ucapanBaru.innerHTML = `<strong>${nama}</strong><br>${pesan}`;
-    document.getElementById("daftarUcapan").prepend(ucapanBaru);
-
-    // Reset form
-    this.reset();
+    fetch("https://script.google.com/macros/s/AKfycbx66q9N78NpRscohs-LWGzJI3IvJUn5M3ozj6ms3Z4NeKi1zpNuOPk9l6wRjGUb3tql/exec", {
+      method: "POST",
+      body: JSON.stringify({ nama: nama, pesan: pesan }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.result === "success") {
+        ambilUcapan(); // refresh ucapan
+        alert("Ucapan berhasil dikirim!");
+        document.getElementById("bukuTamuForm").reset();
+      } else {
+        alert("Gagal mengirim ucapan. Coba lagi ya.");
+      }
+    })
+    .catch(() => alert("Terjadi kesalahan. Periksa koneksi internet."));
   }
 });
+
+function ambilUcapan() {
+  fetch("https://script.google.com/macros/s/AKfycbx66q9N78NpRscohs-LWGzJI3IvJUn5M3ozj6ms3Z4NeKi1zpNuOPk9l6wRjGUb3tql/exec")
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById("daftarUcapan");
+      container.innerHTML = "";
+      data.ucapan.reverse().forEach(item => {
+        const div = document.createElement("div");
+        div.className = "ucapan";
+        div.innerHTML = `<strong>${item.nama}</strong><br>${item.pesan}`;
+        container.appendChild(div);
+      });
+    });
+}
 
 
     function mulaiCountdown() {
