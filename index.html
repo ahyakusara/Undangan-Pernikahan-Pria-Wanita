@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Undangan Pernikahan Alam</title>
+  <title>Undangan Pernikahan </title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins&display=swap" rel="stylesheet">
@@ -149,6 +149,73 @@
   color: #333;
 }
 
+.jadwal-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 10px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.jadwal-item h4 {
+  margin-bottom: 5px;
+  font-family: 'Poppins', sans-serif;
+  color: #2e7d32;
+}
+
+form#bukuTamuForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  max-width: 500px;
+  margin-inline: auto;
+}
+
+#bukuTamuForm input, #bukuTamuForm textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1em;
+}
+
+#bukuTamuForm button {
+  padding: 10px;
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#daftarUcapan {
+  margin-top: 20px;
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+#daftarUcapan .ucapan {
+  background: rgba(255,255,255,0.8);
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 8px;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+.maps-btn {
+  display: inline-block;
+  margin-top: 8px;
+  background-color: #2e7d32;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.95em;
+}
+
     }
 
     h1 {
@@ -235,6 +302,7 @@
       <!-- Tombol Buka -->
       <button class="open-btn" onclick="bukaUndangan()">Buka Undangan</button>
     </div>
+    
 
     <!-- Konten Undangan -->
     <div class="card" id="undangan">
@@ -251,9 +319,20 @@
       <h2>Pria & Wanita</h2>
       <img src="https://raw.githubusercontent.com/ahyakusara/Undangan-Pernikahan-Zet-Oca/main/garis_nama.png" alt="ornamen kanan">
 </div>
-      <p>Sabtu, 17 Mei 2025</p>
-      <p>Pukul 10.00 WIB - Selesai</p>
-      <p>Di Aula PT. Danusari Mitra Sejahtera</p>
+<h3>Jadwal Acara</h3>
+<div class="jadwal-item">
+  <h4>Akad Nikah</h4>
+  <p>Sabtu, 17 Mei 2025 - Pukul 10.00 WIB</p>
+  <p>Aula PT. Danusari Mitra Sejahtera</p>
+  <a href="https://www.google.com/maps?q=Aula+PT.+Danusari+Mitra+Sejahtera" target="_blank" class="maps-btn">📍 Lihat Lokasi</a>
+</div>
+
+<div class="jadwal-item">
+  <h4>Resepsi</h4>
+  <p>Sabtu, 17 Mei 2025 - Pukul 12.00 WIB</p>
+  <p>Aula PT. Danusari Mitra Sejahtera</p>
+  <a href="https://www.google.com/maps?q=Aula+PT.+Danusari+Mitra+Sejahtera" target="_blank" class="maps-btn">📍 Lihat Lokasi</a>
+</div>
 
       <h3>Hitung Mundur</h3>
       <p id="countdown" style="font-weight: bold; font-size: 1.2em;"></p>
@@ -263,6 +342,15 @@
         <img src="https://raw.githubusercontent.com/ahyakusara/Undangan-Pernikahan-Zet-Oca/main/468799900_1514914073244777_5212796667653713633_n.jpg" alt="Foto 1">
         <!-- Tambah foto lain kalau mau -->
       </div>
+
+      <h3>Buku Tamu</h3>
+<form id="bukuTamuForm">
+  <input type="text" id="namaBukuTamu" placeholder="Nama Anda" required>
+  <textarea id="pesanBukuTamu" placeholder="Ucapan atau doa..." required></textarea>
+  <button type="submit">Kirim</button>
+</form>
+
+<div id="daftarUcapan"></div>
 
       <a class="rsvp-btn" href="https://wa.me/6281289934763?text=Halo%2C%20saya%20akan%20hadir%20di%20pernikahan%20Pria%20%26%20Wanita" target="_blank">
         Konfirmasi ke WhatsApp
@@ -291,6 +379,24 @@
   mulaiCountdown();
   undangan.scrollIntoView({ behavior: 'smooth' });
 }
+
+// Fitur Buku Tamu
+document.getElementById("bukuTamuForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const nama = document.getElementById("namaBukuTamu").value.trim();
+  const pesan = document.getElementById("pesanBukuTamu").value.trim();
+
+  if (nama && pesan) {
+    const ucapanBaru = document.createElement("div");
+    ucapanBaru.className = "ucapan";
+    ucapanBaru.innerHTML = `<strong>${nama}</strong><br>${pesan}`;
+    document.getElementById("daftarUcapan").prepend(ucapanBaru);
+
+    // Reset form
+    this.reset();
+  }
+});
+
 
     function mulaiCountdown() {
       const countDownDate = new Date("May 17, 2025 10:00:00").getTime();
