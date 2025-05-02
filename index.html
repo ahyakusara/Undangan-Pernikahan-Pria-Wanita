@@ -7,6 +7,60 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  .invite-container {
+    color: #fff;
+    font-family: 'Cinzel', serif;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    padding: 0 20px;
+  }
+
+  .invite-container .bride-groom {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.2em;
+    margin: 10px 0;
+    color: #ffe9c7;
+  }
+
+  #undangan {
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  display: none;
+  transform: translateY(50px);
+}
+
+#undangan.tampil {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+  .invite-container .to {
+    font-size: 1em;
+    margin-top: 20px;
+  }
+
+  .invite-container .guest-name {
+    font-weight: bold;
+    font-size: 1.4em;
+    margin-top: 8px;
+    color: #fff8f1;
+  }
+
+  /* Responsive adjustment */
+  @media (max-width: 600px) {
+    .invite-container .bride-groom {
+      font-size: 1.8em;
+    }
+    .invite-container .guest-name {
+      font-size: 1.2em;
+    }
+  }
+</style>
+
 
   <style>
     body {
@@ -166,8 +220,22 @@
 <body>
 
   <div class="overlay">
-    <!-- Tombol Buka -->
-    <button class="open-btn" onclick="bukaUndangan()">Buka Undangan</button>
+    <div id="intro" style="margin-bottom: 40px;">
+      <div class="invite-container">
+        <div>The Wedding of</div>
+        <div class="bride-groom">Pria & Wanita</div>
+        <div class="to">Kepada Yth:</div>
+        <div id="nama-tamu" class="guest-name">Tamu Undangan</div>
+        <script>
+          // Ambil parameter nama tamu dari URL
+          const urlParams = new URLSearchParams(window.location.search);
+          const namaTamu = urlParams.get('to') || 'Tamu Undangan';
+          document.getElementById('nama-tamu').textContent = decodeURIComponent(namaTamu.replace(/\+/g, ' '));
+        </script>
+      </div>
+      <!-- Tombol Buka -->
+      <button class="open-btn" onclick="bukaUndangan()">Buka Undangan</button>
+    </div>
 
     <!-- Konten Undangan -->
     <div class="card" id="undangan">
@@ -213,11 +281,17 @@
   <!-- Script -->
   <script>
     function bukaUndangan() {
-      document.querySelector(".open-btn").style.display = "none";
-      document.getElementById("undangan").style.display = "block";
-      document.getElementById("bg-music").play();
-      mulaiCountdown();
-    }
+  document.querySelector(".open-btn").style.display = "none";
+  document.getElementById("intro").style.display = "none"; // <- ini penting
+  const undangan = document.getElementById("undangan");
+  undangan.style.display = "block";
+  setTimeout(() => {
+    undangan.classList.add("tampil");
+  }, 10);
+  document.getElementById("bg-music").play(); 
+  mulaiCountdown();
+  undangan.scrollIntoView({ behavior: 'smooth' });
+}
 
     function mulaiCountdown() {
       const countDownDate = new Date("May 17, 2025 10:00:00").getTime();
