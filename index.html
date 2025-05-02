@@ -73,20 +73,22 @@
     }
 
     .overlay {
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.6);
       min-height: 100vh;
-      padding: 40px 20px;
+      padding: 30px 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .card {
       background: rgba(255, 255, 255, 0.95);
       color: #333;
+      width: 100%;
       max-width: 600px;
-      margin: 0 auto;
-      padding: 30px;
+      padding: 25px;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      display: none;
       animation: fadeIn 1s ease forwards;
 
       .ornamen-kanan-atas,
@@ -216,17 +218,21 @@ form#bukuTamuForm {
   font-size: 0.95em;
 }
 
+h1, h2, h3 {
+      font-family: 'Great Vibes', cursive;
+      margin-top: 0;
+    }
+
     }
 
     h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2.5em;
-      margin-bottom: 10px;
+      font-size: 2.2em;
     }
-
     h2 {
-      font-size: 1.8em;
-      font-family: 'Great Vibes', cursive;
+      font-size: 1.7em;
+    }
+    h3 {
+      font-size: 1.4em;
     }
 
     .footer {
@@ -240,7 +246,7 @@ form#bukuTamuForm {
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
-      margin-top: 20px;
+      margin: 15px 0;
     }
 
     .gallery img {
@@ -248,12 +254,41 @@ form#bukuTamuForm {
       height: 100px;
       object-fit: cover;
       border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
       transition: transform 0.3s ease;
     }
-
     .gallery img:hover {
       transform: scale(1.05);
+    }
+
+    form#bukuTamuForm {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    input, textarea, button {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1em;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #2e7d32;
+      color: white;
+      cursor: pointer;
+    }
+
+    .ucapan {
+      background: #f2f2f2;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      color: #333;
     }
 
     .open-btn {
@@ -268,18 +303,23 @@ form#bukuTamuForm {
     }
 
     a.rsvp-btn {
+      display: inline-block;
       background-color: #4caf50;
       color: white;
       padding: 10px 20px;
-      border-radius: 8px;
+      border-radius: 6px;
       text-decoration: none;
-      display: inline-block;
       margin-top: 20px;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.8em; }
+      h2 { font-size: 1.4em; }
+      h3 { font-size: 1.2em; }
     }
   </style>
 </head>
