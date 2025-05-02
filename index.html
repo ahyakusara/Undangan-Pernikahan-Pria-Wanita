@@ -256,7 +256,30 @@ h1, h2, h3 {
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
       transition: transform 0.3s ease;
+      cursor: pointer;
     }
+
+    #lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    #lightbox img {
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 10px;
+    }
+    #lightbox:target {
+      display: flex;
+    }
+
     .gallery img:hover {
       transform: scale(1.05);
     }
@@ -379,8 +402,18 @@ h1, h2, h3 {
 
       <h3>Galeri</h3>
       <div class="gallery">
-        <img src="https://raw.githubusercontent.com/ahyakusara/Undangan-Pernikahan-Zet-Oca/main/468799900_1514914073244777_5212796667653713633_n.jpg" alt="Foto 1">
+         <a href="#lightbox"><img src="https://raw.githubusercontent.com/ahyakusara/Undangan-Pernikahan-Zet-Oca/main/468799900_1514914073244777_5212796667653713633_n.jpg" alt="foto1"></a>
+         <a href="#lightbox"><img src="https://raw.githubusercontent.com/ahyakusara/Undangan-Pernikahan-Zet-Oca/main/foto 2.jpeg" alt="foto2"></a>
+         <a href="#lightbox"><img src="https://raw.githubusercontent.com/ahyakusara/Undangan-Pernikahan-Zet-Oca/main/foto 3.jpeg" alt="foto3"></a>
+         <a href="#lightbox"><img src="https://raw.githubusercontent.com/ahyakusara/Undangan-Pernikahan-Zet-Oca/main/foto 4.jpeg" alt="foto4"></a>
+         <a href="#lightbox"><img src="https://raw.githubusercontent.com/ahyakusara/Undangan-Pernikahan-Zet-Oca/main/foto 5.jpeg" alt="foto5"></a>
+         <a href="#lightbox"><img src="https://raw.githubusercontent.com/ahyakusara/Undangan-Pernikahan-Zet-Oca/main/foto 8.jpeg" alt="foto8"></a>
+         <a href="#lightbox"><img src="https://raw.githubusercontent.com/ahyakusara/Undangan-Pernikahan-Zet-Oca/main/foto 9.jpeg" alt="foto9"></a>
         <!-- Tambah foto lain kalau mau -->
+      </div>
+
+      <div id="lightbox">
+        <img id="lightbox-img" src="" alt="preview">
       </div>
 
       <h3>Ucapan & Doa</h3>
@@ -392,7 +425,20 @@ h1, h2, h3 {
       
       <div id="daftarUcapan"></div>
       
-<!-- Firebase SDK -->
+<script>
+    // Lightbox JS
+    document.querySelectorAll('.gallery img').forEach(img => {
+      img.addEventListener('click', () => {
+        document.getElementById('lightbox-img').src = img.src;
+        document.getElementById('lightbox').style.display = 'flex';
+      });
+    });
+    document.getElementById('lightbox').addEventListener('click', () => {
+      document.getElementById('lightbox').style.display = 'none';
+    });
+  </script>
+
+      <!-- Firebase SDK -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
   import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
